@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var arr = [1, 2.3, true, "Hello"]
+        // var std = [101, 4.5, "CSE", false, "Sam"]
+        // std[3]
+        // var s = {
+        //     id : 101,
+        //     branch: "CSE",
+        //     cgpa: 4.5,
+        //     isGraduated: false,
+        //     name: "sam"
+        // }
+        // s.name
+
+        // var restaurant = {
+        //     id: 111,
+        //     name: "Idli Bhavan",
+        //     isOpen: true,
+        //     cuisines: ["South Indian", "North Indian", "Breakfast"],
+        //     address: {
+        //        locality: "Infocity Square",
+        //        area: "Patia",
+        //        geo: {
+        //         lat: 20.18,
+        //         long: 80.14
+        //        } 
+        //     },
+        //     getName: function(){
+        //         console.log(this.name);
+        //     }
+        // }
+        // console.log(restaurant.cuisines);
+        // console.log(restaurant.address.geo.lat);
+        // console.log(restaurant);
+        // restaurant.getName();
+        // console.log(this);
+
+        var restaurants = [
+            {id: 111, name: "Idli Bhaban", rating: 4.1, cuisines: ["North Indian", "South Indian"]},
+            {id: 112, name: "Jugaad Jn", rating: 3.9, cuisines: ["North Indian", "Snacks", "Breakfast"]},
+            {id: 113, name: "KFC", rating: 4.2, cuisines: ["American", "Burger"]},
+            {id: 114, name: "Domino's", rating: 4.1, cuisines: ["Italian", "Pizza"]}
+        ]
+        // console.log(restaurants);
+        for(var i=0; i<restaurants.length; i++){
+            console.log(restaurants[i].id+" "+restaurants[i].name+" "+restaurants[i].rating+" "+restaurants[i].cuisines.join(", "));
+        }
+    </script>
+</body>
+</html>

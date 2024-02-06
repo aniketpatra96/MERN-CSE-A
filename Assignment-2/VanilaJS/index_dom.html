@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .rest{
+            border-collapse: collapse;
+        }
+        .rest td, 
+        .rest th{
+            padding: 10px;
+        }
+        input{
+            display: block;
+            margin: 3px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+
+    <form action="" method="post" onsubmit="add(event)">
+        <div id="formRow">
+            <input type="text" name="num" placeholder="Enter a number">
+            <input type="text" name="num" placeholder="Enter a number">
+        </div>
+        <button type="button" onclick="addRow()">Add More</button>
+        <input type="submit" value="ADD">
+    </form>
+    <p id="res"></p>
+
+    <script>
+        // document.write("<h1>Hello JS!</h1>")
+        // var heading = "<h1>Another H1 tag</h1>"
+        // document.write(heading)
+        // var heading = document.createElement("h1")
+        // heading.textContent = "New H1 tag"
+        // heading.style.color = "blue"
+        // heading.style.backgroundColor = "yellow"
+        // // document.body.appendChild(heading)
+        // document.getElementById("content").appendChild(heading)
+
+        // var btn = document.createElement("button")
+        // btn.textContent = "Click"
+        // btn.onclick = function(){
+        //     alert("Button is clicked")
+        // }
+        // document.getElementById("content").appendChild(btn)
+
+        // var lang = ["C", "C++", "Java", "JS", "Python"]
+
+        // var ul = document.createElement('ul')
+        // for(var i=0; i<lang.length; i++){
+        //     var li = document.createElement("li")
+        //     li.textContent = lang[i]
+        //     ul.appendChild(li)
+        // }
+        // document.getElementById("content").appendChild(ul)
+
+        // var restaurants = [
+        //     {id: 111, name: "Idli Bhaban", rating: 4.1, cuisines: ["North Indian", "South Indian"]},
+        //     {id: 112, name: "Jugaad Jn", rating: 3.9, cuisines: ["North Indian", "Snacks", "Breakfast"]},
+        //     {id: 113, name: "KFC", rating: 4.2, cuisines: ["American", "Burger"]},
+        //     {id: 114, name: "Domino's", rating: 4.1, cuisines: ["Italian", "Pizza"]}
+        // ]
+
+        // var table = document.createElement("table")
+        // table.border = 1
+        // table.className = "rest"
+        // var tr = document.createElement("tr")
+        // console.log(Object.keys(restaurants[0]));
+        // var keys =Object.keys(restaurants[0]);
+        // for(var i=0; i<keys.length; i++){
+        //     var th = document.createElement("th")
+        //     th.textContent = keys[i].toUpperCase()
+        //     tr.appendChild(th)
+        // }
+        // table.appendChild(tr)
+
+        // for(var i=0; i<restaurants.length; i++){
+        //     var tr = document.createElement("tr")
+        //     var td = document.createElement("td")
+        //     td.textContent = restaurants[i].id
+        //     tr.appendChild(td)
+        //     td = document.createElement("td")
+        //     td.textContent = restaurants[i].name
+        //     tr.appendChild(td)
+        //     td = document.createElement("td")
+        //     td.textContent = restaurants[i].rating
+        //     tr.appendChild(td)
+        //     td = document.createElement("td")
+        //     td.textContent = restaurants[i].cuisines.join(", ")
+        //     tr.appendChild(td)
+        //     table.appendChild(tr)
+        // }
+        // document.getElementById("content").appendChild(table)
+        
+        function addRow(){
+            var inp = document.createElement("input")
+            inp.type = "text"
+            inp.name = "num"
+            inp.placeholder = "Enter a number"
+            document.getElementById("formRow").appendChild(inp)
+        }
+        function add(e){
+            e.preventDefault()
+            var nums = document.getElementsByName("num")
+            console.log(nums);
+            var s = 0
+            for(var i=0; i<nums.length; i++){
+                var n = parseInt(nums[i].value)
+                s+=n
+            }
+            document.getElementById('res').innerHTML = s
+        }
+    </script>
+</body>
+</html>
