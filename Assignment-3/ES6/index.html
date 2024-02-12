@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // function outer(){
+        //     console.log("This is the outer function");
+        //     var a = 10;
+        //     function inner(){
+        //         console.log("This is an inner function");
+        //         console.log("A = "+a);
+        //     }
+        //     return inner;
+        // }
+
+        // var func = outer()
+        // console.log("Outer executed");
+        // func()
+
+        // function add(a,b){
+        //     var c = a+b
+        //     return c
+        // }
+        // function add(a,b, display){
+        //     var c = a+b
+        //     // return c
+        //     display(c)
+        // }
+        function add(a,b, callback){
+            var c = a+b
+            // return c
+            callback(c)
+        }
+        
+
+        // function display(x){
+        //     console.log(x);
+        // }
+
+        // var sum = add(10, 20)
+        // display(sum)
+        // display : callback function
+        // add: higher order function
+        // add(10, 20, display)
+        // add(1,2, function(x){
+        //     console.log(x);
+        // })
+
+        // function evenOdd(n, callback){
+        //     // return n%2 === 0 ? "Even" : "Odd";
+        //     var r = n%2 === 0 ? "Even" : "Odd";
+        //     callback(r)
+        // }
+
+        // evenOdd(20, function(data){
+        //     console.log(data);
+        // })
+
+        // setTimeout(function(){
+        //     console.log("Time out");
+        // }, 3000)
+
+        // function add(a,b){
+        //     console.log("Add is called");
+        //     setTimeout(function(){
+        //         console.log("Sum is getting calculated");
+        //         var c = a+b
+        //         return c
+        //     }, 3000)
+        // }
+        console.log("Start");
+        setTimeout(function(){
+            console.log("Timer 2 Out");
+        }, 4000)
+        setTimeout(function(){
+            console.log("Timer 1 Out");
+        }, 2000)
+        function add(a,b, callback){
+            console.log("Add is called");
+            setTimeout(function(){
+                console.log("Sum is getting calculated");
+                var c = a+b
+                // return c
+                callback(c)
+            }, 3000)
+        }
+        console.log("Between");
+
+        // function display(data){
+        //     console.log(data);
+        // }
+
+        // var s = add(10, 20)
+        // display("Sum="+s)
+        add(100, 200, function(data){
+            console.log("Sum = "+ data);
+        })
+        console.log("End");
+    </script>
+</body>
+</html>
