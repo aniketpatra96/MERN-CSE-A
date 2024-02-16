@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h2 id="clock"></h2>
     
     <script>
         // function outer(){
@@ -73,23 +74,23 @@
         //         return c
         //     }, 3000)
         // }
-        console.log("Start");
-        setTimeout(function(){
-            console.log("Timer 2 Out");
-        }, 4000)
-        setTimeout(function(){
-            console.log("Timer 1 Out");
-        }, 2000)
-        function add(a,b, callback){
-            console.log("Add is called");
-            setTimeout(function(){
-                console.log("Sum is getting calculated");
-                var c = a+b
-                // return c
-                callback(c)
-            }, 3000)
-        }
-        console.log("Between");
+        // console.log("Start");
+        // setTimeout(function(){
+        //     console.log("Timer 2 Out");
+        // }, 4000)
+        // setTimeout(function(){
+        //     console.log("Timer 1 Out");
+        // }, 2000)
+        // function add(a,b, callback){
+        //     console.log("Add is called");
+        //     setTimeout(function(){
+        //         console.log("Sum is getting calculated");
+        //         var c = a+b
+        //         // return c
+        //         callback(c)
+        //     }, 3000)
+        // }
+        // console.log("Between");
 
         // function display(data){
         //     console.log(data);
@@ -97,10 +98,36 @@
 
         // var s = add(10, 20)
         // display("Sum="+s)
-        add(100, 200, function(data){
-            console.log("Sum = "+ data);
-        })
-        console.log("End");
+        // add(100, 200, function(data){
+        //     console.log("Sum = "+ data);
+        // })
+        // console.log("End");
+
+        // var counter = 0;
+        // setInterval(function(){
+        //     console.log("Hello "+(++counter));
+        // }, 1000)
+
+        // var date = new Date()
+        // console.log(date);
+        // console.log(date.toLocaleString());
+        // console.log(date.toLocaleDateString());
+        // console.log(date.toLocaleTimeString());
+        // console.log(date.getFullYear());
+        // console.log(date.getMonth()+1);
+
+        // console.log(date.toLocaleTimeString("en-US", {timeZone: "Europe/London"}));
+        // console.log(date.toLocaleTimeString("en-US", {timeZone: "Asia/Kolkata"}));
+        // console.log(date.toLocaleTimeString("en-US", {timeZone: "Asia/Hong_Kong"}));
+        
+        
+        // setInterval(function() {
+        //     var date = new Date()
+        //     document.getElementById("clock").innerHTML = date.toLocaleTimeString("en-US", {timeZone: "Asia/Kolkata"})
+        // }, 1000)
+
+
     </script>
+    <script src="1.js"></script>
 </body>
 </html>
