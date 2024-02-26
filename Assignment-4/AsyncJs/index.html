@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container ul{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        li{
+            list-style-type: none;
+        }
+        .user{
+            margin: 10px;
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        
+        // fetch('https://dummyjson.com/users')
+        //     .then(res => {
+        //         console.log(res);
+        //         console.log(typeof(res));
+        //         return res.json()
+        //     })
+        //     .then(json => {
+        //         let users = json.users
+        //         users.forEach( user =>{
+        //             console.log(user.firstName+" "+user.lastName);
+        //         })
+        //     })
+        //     .catch(err => console.log(err))
+        let url = 'https://dummyjson.com/users/'
+        async function getUsers() {
+            try {
+                let res = await axios(url)
+                // console.log(res);
+                // console.log(res.data.users);
+                let users = res.data.users
+                // let ul = document.createElement("ul")
+                // users.forEach( user =>{
+                //     // console.log(user.firstName+" "+user.lastName);
+                //     let li = document.createElement('li')
+                //     li.textContent = user.firstName+" "+user.lastName
+                //     ul.appendChild(li)
+                // })
+                // document.getElementById("container").appendChild(ul)
+
+                let ul = `<ul>`
+                users.forEach( user =>{
+                    ul += `<li>
+                            <div class='user'>
+                                <img src="${user.image}" width="120" />
+                                <p>${user.firstName} ${user.lastName}</p>
+                            </div>
+                            </li>` 
+                })
+                ul+= `</ul>`
+                document.getElementById("container").innerHTML = ul
+
+            } catch (error) {
+                console.log("Error: "+error);
+            }
+        }
+        getUsers()
+
+    </script>
+</body>
+</html>
