@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav style="border-bottom: 3px solid black; padding: 20px; text-align: center;">
+        <a href="product-add.html">Add</a>
+        <a href="product-display.html">Display</a>
+    </nav>
+    <h1>Update a Product</h1>
+    <form method="post" action="" onsubmit="updateProduct(event)">
+        <input type="text" id="name" placeholder="Product Name">
+        <input type="text" id="price" placeholder="Product Price">
+        <input type="submit"value="Update">
+    </form>
+    <p id="res"></p>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        const url = "http://localhost:3000/product"
+
+        const urlPrams = new URLSearchParams(window.location.search)
+        const pid = urlPrams.get("id")
+        console.log(pid);
+
+        async function getProduct(id){
+            let purl = url +"/"+id
+            let res = await axios(purl)
+            console.log(res);
+            document.getElementById("name").value = res.data.name
+            document.getElementById("price").value = res.data.price
+        }
+        getProduct(pid)
+
+        async function updateProduct(e){
+            e.preventDefault();
+            try {
+                let updateUrl = url +"/"+ pid
+                let name = document.getElementById("name").value
+                let price = document.getElementById("price").value
+                let res = await axios.put(updateUrl, {name, price}) 
+
+                if(res.status == 200){
+                    document.getElementById("res").innerHTML = "Product Updated"
+                } else {
+                    document.getElementById("res").innerHTML = "Error !!!"
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>

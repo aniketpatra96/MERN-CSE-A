@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav style="border-bottom: 3px solid black; padding: 20px; text-align: center;">
+        <a href="product-add.html">Add</a>
+        <a href="product-display.html">Display</a>
+    </nav>
+    <h1>Add a Product</h1>
+    <form method="post" action="" onsubmit="addProduct(event)">
+        <input type="text" id="name" placeholder="Product Name">
+        <input type="text" id="price" placeholder="Product Price">
+        <input type="submit"value="ADD">
+    </form>
+    <p id="res"></p>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        const url = "http://localhost:3000/product"
+        
+        async function addProduct(e){
+            e.preventDefault();
+
+            try {
+                let name = document.getElementById("name").value
+                let price = document.getElementById("price").value
+
+                let res = await axios.post(url, {name: name, price: price})
+                // console.log(res);
+                if(res.status == 201){
+                    document.getElementById("res").innerHTML = "Product Added"
+                    document.getElementById("name").value = ""
+                    document.getElementById("price").value = ""
+                } else {
+                    document.getElementById("res").innerHTML = "Error !!!"
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    </script>
+</body>
+</html>
