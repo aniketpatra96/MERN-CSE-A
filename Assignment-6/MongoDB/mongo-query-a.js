@@ -336,30 +336,35 @@ use("csea")
 //     }
 // ])
 
-db.emp.aggregate([
-    {
-        $lookup: {
-          from: "contact",
-          localField: "eid",
-          foreignField: "eid",
-          as: "contactInfo"
-        }
-    },
-    {
-        $match: {"contactInfo.address.state": "Delhi"}
-    },
-    {
-        $project: {
-          "_id": 0,
-          "eid": 1,
-          "name": 1,
-          "salary": 1,
-          "dept": 1,
-          "contactInfo.mobile": 1,
-          "contactInfo.email": 1,
-        }
-    },
-    {
-        $limit: 1
-    }
-])
+// db.emp.aggregate([
+//     {
+//         $lookup: {
+//           from: "contact",
+//           localField: "eid",
+//           foreignField: "eid",
+//           as: "contactInfo"
+//         }
+//     },
+//     {
+//         $match: {"contactInfo.address.state": "Delhi"}
+//     },
+//     {
+//         $project: {
+//           "_id": 0,
+//           "eid": 1,
+//           "name": 1,
+//           "salary": 1,
+//           "dept": 1,
+//           "contactInfo.mobile": 1,
+//           "contactInfo.email": 1,
+//         }
+//     },
+//     {
+//         $limit: 1
+//     }
+// ])
+
+// db.emp.deleteOne({"eid": "E101"})
+// db.emp.deleteMany({'dept': "MGR"})
+// db.emp.drop()
+db.emp.find()
