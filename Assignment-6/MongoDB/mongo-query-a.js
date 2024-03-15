@@ -139,4 +139,227 @@ use("csea")
 // db.emp.find({"dept": "SDE", "salary": 90000})
 // AND(Explicit)
 // db.emp.find({$and: [{"dept": "SDE"}, {"salary": 90000}]})
-db.emp.find({$and: [{"dept": "SDE"}, {"salary": {$gt : 70000}}]})
+// db.emp.find({$and: [{"dept": "SDE"}, {"salary": {$gt : 70000}}]})
+
+
+// Search
+// db.emp.find({"name": /Amit/})
+// db.emp.find({"name": /a/})
+// db.emp.find({"name": /^A/})
+// db.emp.find({"name": /a$/})
+
+// Update
+// update({query},{$s: {updates(k:v)}}, {options})
+// db.emp.updateOne({"eid": "E101"}, {$set: {"salary": 65000}})
+// db.emp.updateOne({"eid": "E102"}, {$set: {"salary": 65000, "dept": "MGR"}})
+// db.emp.find()
+// db.emp.updateMany({"dept": "SDE"}, {$set: {"dept": "SDE-1"}})
+
+// Aggregation Pipeline
+// aggregate([
+//     {
+//         // Stage-1
+//     },
+//     {
+//         //Stage-2
+//     },
+//     ...
+// ])
+// db.emp.aggregate([
+//     {
+//         $group: {
+//           _id: "$dept",
+//           avgSal: {$avg: "$salary"}
+//         }
+//     }
+// ])
+
+// db.emp.aggregate([
+//     {
+//         $group: {
+//           _id: "$dept",
+//           avgSal: {$avg: "$salary"}
+//         }
+//     },
+//     {
+//         $match: {"avgSal": {$gt: 70000}}
+//     }
+// ])
+
+// db.emp.aggregate([
+//     {
+//         $group: {
+//           _id: "$dept",
+//           avgSal: {$avg: "$salary"}
+//         }
+//     },
+//     {
+//         $match: {"avgSal": {$gt: 70000}}
+//     },
+//     {
+//         $project: {
+//           _id: 1
+//         }
+//     }
+// ])
+
+// db.emp.aggregate([
+//     {
+//         $group: {
+//           _id: null,
+//           avgSal: {$avg: "$salary"}
+//         }
+//     }
+// ])
+
+// db.emp.aggregate([
+//     {
+//         $group: {
+//           _id: "$dept",
+//           empCount: { $sum: 1 }
+//         }
+//     }
+// ])
+
+
+// db.contact.insertMany([
+//     {
+//         "eid": "E101",
+//         "mobile": "9876543210",
+//         "email": "john.doe@example.com",
+//         "address": {
+//             "city": "Mumbai",
+//             "state": "Maharashtra",
+//             "zip": 400001
+//         }
+//     },
+//     {
+//         "eid": "E102",
+//         "mobile": "9876543211",
+//         "email": "jane.smith@example.com",
+//         "address": {
+//             "city": "Delhi",
+//             "state": "Delhi",
+//             "zip": 110001
+//         }
+//     },
+//     {
+//         "eid": "E103",
+//         "mobile": "9876543212",
+//         "email": "amit.patel@example.com",
+//         "address": {
+//             "city": "Delhi",
+//             "state": "Delhi",
+//             "zip": 380001
+//         }
+//     },
+//     {
+//         "eid": "E104",
+//         "mobile": "9876543213",
+//         "email": "priya.sharma@example.com",
+//         "address": {
+//             "city": "Chandigarh",
+//             "state": "Punjab",
+//             "zip": 160001
+//         }
+//     },
+//     {
+//         "eid": "E105",
+//         "mobile": "9876543214",
+//         "email": "raj.singh@example.com",
+//         "address": {
+//             "city": "Delhi",
+//             "state": "Delhi",
+//             "zip": 302001
+//         }
+//     },
+//     {
+//         "eid": "E106",
+//         "mobile": "9876543215",
+//         "email": "kavita.gupta@example.com",
+//         "address": {
+//             "city": "Kolkata",
+//             "state": "West Bengal",
+//             "zip": 700001
+//         }
+//     },
+//     {
+//         "eid": "E107",
+//         "mobile": "9876543216",
+//         "email": "sandeep.verma@example.com",
+//         "address": {
+//             "city": "Bangalore",
+//             "state": "Karnataka",
+//             "zip": 560001
+//         }
+//     },
+//     {
+//         "eid": "E108",
+//         "mobile": "9876543217",
+//         "email": "ananya.das@example.com",
+//         "address": {
+//             "city": "Hyderabad",
+//             "state": "Telangana",
+//             "zip": 500001
+//         }
+//     },
+//     {
+//         "eid": "E109",
+//         "mobile": "9876543218",
+//         "email": "rahul.kapoor@example.com",
+//         "address": {
+//             "city": "Chennai",
+//             "state": "Tamil Nadu",
+//             "zip": 600001
+//         }
+//     },
+//     {
+//         "eid": "E110",
+//         "mobile": "9876543219",
+//         "email": "pooja.khanna@example.com",
+//         "address": {
+//             "city": "Pune",
+//             "state": "Maharashtra",
+//             "zip": 411001
+//         }
+//     }
+// ])
+
+// db.emp.aggregate([
+//     {
+//         $lookup: {
+//           from: "contact",
+//           localField: "eid",
+//           foreignField: "eid",
+//           as: "contactInfo"
+//         }
+//     }
+// ])
+
+db.emp.aggregate([
+    {
+        $lookup: {
+          from: "contact",
+          localField: "eid",
+          foreignField: "eid",
+          as: "contactInfo"
+        }
+    },
+    {
+        $match: {"contactInfo.address.state": "Delhi"}
+    },
+    {
+        $project: {
+          "_id": 0,
+          "eid": 1,
+          "name": 1,
+          "salary": 1,
+          "dept": 1,
+          "contactInfo.mobile": 1,
+          "contactInfo.email": 1,
+        }
+    },
+    {
+        $limit: 1
+    }
+])
