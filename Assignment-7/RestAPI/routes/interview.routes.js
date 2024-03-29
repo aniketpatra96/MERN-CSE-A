@@ -5,15 +5,17 @@ const {
     addInterview,
     getInterviewById,
     updateInterview,
-    deleteInterview
+    deleteInterview,
+    getInterviewDetails
  } = require("../controllers/interview.controller")
 
 const interviewRouter = express.Router();
 
-interviewRouter.get("/interview", getAllInterviews)
-interviewRouter.post("/interview", addInterview)
-interviewRouter.get("/interview/:id", getInterviewById)
-interviewRouter.put("/interview/:id", updateInterview)
-interviewRouter.delete("/interview/:id", deleteInterview)
+interviewRouter.get("/", getAllInterviews)
+interviewRouter.post("/", addInterview)
+interviewRouter.get("/:id", getInterviewById)
+interviewRouter.put("/:id", updateInterview)
+interviewRouter.delete("/:id", deleteInterview)
+interviewRouter.get("/details/:id", getInterviewDetails)
 
 module.exports = interviewRouter
