@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 async function dbConnect(){
-    const DB_URL = "mongodb+srv://etlaba:etlaba@cluster0.bkmjv4h.mongodb.net"
+    const DB_URL = "Your database URL"
     const DB = "placementpal"
     try {
         await mongoose.connect(DB_URL+"/"+DB)
