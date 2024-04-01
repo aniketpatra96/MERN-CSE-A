@@ -1,0 +1,14 @@
+/* h2{
+    color: red;
+    background-color: aquamarine;
+}
+.myclass{
+    color: green;
+} */
+
+.user-card{
+    width: 250px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid black;
+}
