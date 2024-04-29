@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import axios from 'axios'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import parse from 'html-react-parser'
 import interviewService from '../apiservice/InterviewService'
+import questionService from '../apiservice/QuestionService'
 
 const InterviewDetails = () => {
     const { id } = useParams()
+    const navigate = useNavigate()
     const [ interview, setInterview ] = useState(null)
 
     const getInterviewDetails = async(id) => {
@@ -19,6 +21,23 @@ const InterviewDetails = () => {
 
     if(!interview) return
 
+    const deleteInterview = async(e) => {
+        e.preventDefault();
+
+        let questionRes = {status: true};
+        if(interview.questions.length > 0){
+            questionRes = await questionService.deleteQuestion(interview.questions[0]._id)
+        }
+        if(!questionRes.status){
+            return;
+        }
+
+        let interviewRes = await interviewService.deleteInterview(id)
+
+        if(questionRes.status && interviewRes.status){
+            navigate("/")
+        }
+    }
   return (
     <div>
       <h3>{interview.companyName} - {interview.role}</h3>
@@ -28,14 +47,14 @@ const InterviewDetails = () => {
       {/* {interview?.questions[0]?.questions} */}
       {
         interview.questions.length>0 ? (
-            interview?.questions[0]?.questions
+            parse(interview?.questions[0]?.questions)
         ) : (
-            <Link to="">Add Questions</Link>
+            <Link to={`/addquestion/${interview._id}`}>Add Questions</Link>
         )
         }
         <div className="text-end">
-            <Link to="/" className='btn btn-sm btn-info m-1'>Update</Link>
-            <Link to="/" className='btn btn-sm btn-danger m-1'>Delete</Link>
+            <Link to={`/updateinterview/${interview._id}`} className='btn btn-sm btn-info m-1'>Update</Link>
+            <Link to="/" onClick={deleteInterview} className='btn btn-sm btn-danger m-1'>Delete</Link>
         </div>
     </div>
   )

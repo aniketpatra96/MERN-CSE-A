@@ -6,6 +6,8 @@ import Layout from './layouts/Layout'
 import Home from './pages/Home'
 import AddInterview from './pages/AddInteview'
 import InterviewDetails from "./pages/InterviewDetails"
+import AddQuestions from "./pages/AddQuestions"
+import UpdateInterview from "./pages/UpdateInterview"
 
 function App() {
  const router = createBrowserRouter([
@@ -15,7 +17,9 @@ function App() {
     children: [
       { path: "/", element: <Home />},
       { path: "/addinterview", element: <AddInterview />},
+      { path: "/addquestion/:id", element: <AddQuestions />},
       { path: "/interviewdetails/:id", element: <InterviewDetails />},
+      { path: "/updateinterview/:id", element: <UpdateInterview />},
     ]
   }
  ])
