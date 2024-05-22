@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21BCSE30 | ANIKET PATRA</title>
+    <link rel="stylesheet" href="./BS5/bootstrap.min.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Student Records</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="./addStudent.html">Add Student</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./displayStudent.html"
+                >Display Student Records</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="vh-100" style="background-color: #eee">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-12 col-xl-11">
+            <div class="card text-black" style="border-radius: 25px">
+              <div class="card-body p-md-5">
+                <div class="row justify-content-center">
+                  <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                      Update Student
+                    </p>
+
+                    <form class="mx-1 mx-md-4" onsubmit="return validate()">
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <label class="form-label" for="form3Example1c"
+                            >Your Name</label
+                          >
+                          <input type="text" id="name" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <label class="form-label" for="form3Example3c"
+                            >Your Branch</label
+                          >
+                          <input type="text" id="branch" class="form-control" />
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <label class="form-label" for="form3Example4c"
+                            >Your CGPA</label
+                          >
+                          <input type="text" id="cgpa" class="form-control" />
+                        </div>
+                      </div>
+                      <div
+                        class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
+                      >
+                        <button
+                          type="button"
+                          class="btn btn-primary btn-lg"
+                          onclick="Update()"
+                        >
+                          Update Student
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div
+                    class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+                  >
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                      class="img-fluid"
+                      alt="Sample image"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="./BS5/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="q4.js"></script>
+    <script>
+      let id;
+      (async function updateStud() {
+        const student = await JSON.parse(localStorage.getItem("student"));
+        id = student.id;
+        document.getElementById("name").value = student.name;
+        document.getElementById("branch").value = student.branch;
+        document.getElementById("cgpa").value = student.CGPA;
+        localStorage.removeItem("student");
+        localStorage.clear();
+      })();
+      function Update() {
+        const name = document.getElementById("name").value;
+        const branch = document.getElementById("branch").value;
+        const cgpa = parseFloat(document.getElementById("cgpa").value);
+        if (name === "" || branch === "" || isNaN(cgpa)) {
+          alert("Please fill all the fields!");
+          return false;
+        }
+        if (cgpa < 1 && cgpa > 10) {
+          alert("Invalid CGPA!!");
+          return false;
+        }
+        const updatedData = {
+          id: id,
+          name: name,
+          branch: branch,
+          CGPA: cgpa,
+        };
+        updateStudent(id, updatedData);
+        window.location.href = "displayStudent.html";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      let url = "https://dummyjson.com/users";
+      async function getUsers() {
+        try {
+          const res = await axios(url);
+          const data = res.data.users
+          let ul=document.createElement('ul')
+          data.forEach((user) => {
+            // console.log(user.name);
+            let li = document.createElement('li');
+            li.textContent = user.firstName;
+            ul.appendChild(li);
+          });
+          document.getElementById("container").appendChild(ul);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      getUsers();
+    </script>
+  </body>
+</html>

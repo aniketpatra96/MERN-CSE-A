@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21BCSE30 | Aniket Patra</title>
+    <link rel="stylesheet" href="./Bootstrap5/bootstrap.min.css">
+    <style>
+        table,th,tr,td{
+            border: 1px solid black;
+            text-align: center;
+            margin-top: 5%;
+        }
+        tr:nth-child(even){
+            background-color: aquamarine;
+        }
+        tr:nth-child(odd){
+            background-color: burlywood;
+        }
+        th{
+            color: blueviolet;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="students"></div>
+   <script src="./Bootstrap5/bootstrap.bundle.min.js"></script>
+   <script>
+    var students = [
+        {roll:6,name:'Aniket Patra',mobile:8260374471,email:'aniketpatra96@gmail.com'},
+        {roll:5,name:'Akash Kumar',mobile:9860077371,email:"akashkumarrjn@gmail.com"},
+        {roll:1,name:'Rohit Sharma',mobile:9860077370,email:"rohitsharmaa_123@yahoo.com"},
+        {roll:7,name:'Vishal Jain', mobile: 9999999999, email:"vishaljain123@gmail.com"},
+        {roll:8,name:'Rakesh Roshan',mobile:9437890341,email:'rakesh.roshan5@gmail.com'},
+        {roll:9,name:'Depeeka Kakkar',mobile:9437123202,email:'depeeka.kakkar46@yahoo.com'},
+        {roll:2,name:'Dinesh Pathak',mobile:7978613543,email:'pathak.dinesh12@gmail.com'},
+        {roll:3,name:'Anmol Partha Behera',mobile:9091278562,email:'behera.anmol22@gmail.com'},
+        {roll:11,name:'Ashutosh Panda',mobile:7982678115,email:'ashutosh.panda45@gmail.com'},
+        {roll:13,name:'Suvendu Sahoo',mobile:4546712367,email:'sahoo.suvendu67@yahoo.com'}
+    ];
+    window.onload = ()=>{
+        const table = document.createElement('table');
+        const headRow = document.createElement('tr');
+        ['Roll No','Name','Mobile Number','Email ID'].forEach((item) => {
+            let th = document.createElement('th');
+            th.appendChild(document.createTextNode(item));
+            headRow.appendChild(th);
+        });
+        table.appendChild(headRow);
+        students.forEach((obj)=>{
+           let row = document.createElement('tr');
+           row.className = 'table-danger';
+           Object.values(obj).forEach((item)=> {
+               let td = document.createElement('td');
+               td.appendChild(document.createTextNode(item));
+               row.appendChild(td);
+           })
+           table.appendChild(row);
+       });
+       table.classList='mt-5 table table-bordered table-hover';
+       table.style="width:50%;margin:auto;";
+       document.getElementById("students").appendChild(table);
+    }
+   </script> 
+</body>
+</html>

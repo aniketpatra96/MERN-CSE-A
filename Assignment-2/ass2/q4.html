@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21BCSE30 | Aniket Patra</title>
+    <link rel="stylesheet" href="./Bootstrap5/bootstrap.min.css" />
+  </head>
+  <body>
+    <center>
+      <div class="container mt-4 bg-light p-4 rounded border shadow-sm">
+        <h1>Working Experience of Employee</h1>
+        <form class="form">
+          <div id="experienceFields">
+            <div class="experienceRow">
+              <div class="row mb-3">
+                <label for="organization" class="col-sm-2 col-form-label"
+                  >Name of Organization</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    name="organization[]"
+                    class="form-control"
+                    id="organization"
+                    placeholder="Enter the Organization"
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="designation" class="col-sm-2 col-form-label"
+                  >Designation of Employee</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    name="designation[]"
+                    class="form-control"
+                    id="designation"
+                    placeholder="Enter the Designation of the Employee"
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="duration" class="col-sm-2 col-form-label"
+                  >Duration of Service</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    name="duration[]"
+                    class="form-control"
+                    id="duration"
+                    placeholder="Enter the Duration of Service of the Employee"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            onclick="addExperience()"
+            class="btn btn-primary"
+          >
+            Add More
+          </button>
+          <button type="submit" onclick="submitForm()" class="btn btn-success">
+            Submit
+          </button>
+        </form>
+      </div>
+    </center>
+    <script src="./Bootstrap5/bootstrap.bundle.min.js"></script>
+    <script>
+      function addExperience() {
+        var experienceFields = document.getElementById("experienceFields");
+        var newExperienceRow = document.createElement("div");
+        newExperienceRow.className = "row mb-3 experienceRow";
+
+        var labels = [
+          "Name of Organization",
+          "Designation of Employee",
+          "Duration of Service",
+        ];
+
+        var nameLabels = ["organization", "designation", "duration"];
+
+        for (var i = 0; i < labels.length; i++) {
+          var labelContainer = document.createElement("label");
+          labelContainer.className = "col-sm-2 col-form-label";
+          labelContainer.textContent = labels[i];
+
+          newExperienceRow.appendChild(labelContainer);
+
+          var inputContainer = document.createElement("div");
+          inputContainer.className = "col-sm-10";
+
+          var input = document.createElement("input");
+          input.type = "text";
+          input.name = nameLabels[i].toLowerCase().replace(/\s/g, "_") + "[]";
+          console.log(input.name);
+          input.className = "form-control";
+          input.placeholder = "Enter the " + labels[i];
+
+          inputContainer.appendChild(input);
+          newExperienceRow.appendChild(inputContainer);
+        }
+
+        experienceFields.appendChild(newExperienceRow);
+      }
+
+      function submitForm() {
+        var formData = [];
+
+        var experienceRows = document.querySelectorAll(".experienceRow");
+
+        experienceRows.forEach(function (row) {
+          var organization = row.querySelector(
+            'input[name="organization[]"]'
+          )?.value;
+          var designation = row.querySelector(
+            'input[name="designation[]"]'
+          )?.value;
+          var duration = row.querySelector('input[name="duration[]"]')?.value;
+
+          if (organization && designation && duration) {
+            // Check for values before creating object
+            var experienceObject = {
+              Organization: organization,
+              Designation: designation,
+              Duration: duration,
+            };
+            formData.push(experienceObject);
+          } else {
+            alert("gone wrong");
+          }
+        });
+
+        console.log(formData);
+        document
+          .getElementsByClassName("form")[0]
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            this.reset();
+          });
+      }
+    </script>
+  </body>
+</html>

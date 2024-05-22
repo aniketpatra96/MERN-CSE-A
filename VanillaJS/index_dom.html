@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table,
+      th,
+      tr,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script>
+      // document.write('Hello js');
+      var heading = document.createElement("h1");
+      // document.body.appendChild(heading);
+      heading.textContent = "New H1 Tag";
+      heading.style.color = "blue";
+      heading.style.backgroundColor = "red";
+      document.getElementById("content").append(heading);
+      var btn = document.createElement("button");
+      btn.textContent = "Click";
+      btn.onclick = function () {
+        alert("button is clicked");
+      };
+      document.getElementById("content").append(btn);
+      var lang = ["C", "C++", "Java", "JS", "Python"];
+      var ul = document.createElement("ul");
+      lang.map((lang) => {
+        var li = document.createElement("li");
+        li.textContent = lang;
+        ul.append(li);
+      });
+      document.getElementById("content").append(ul);
+      // Object.keys();
+      var restaurant = {
+        id: 101,
+        name: "Idli Bhavan",
+        isOpen: true,
+        address: {
+          street: "MG Road",
+          city: "Bangalore",
+          pincode: 560034,
+          geolocation: {
+            lat: 12.9716,
+            long: 77.5986,
+          },
+        },
+      };
+      var restaurants = [
+        {
+          id: 101,
+          name: "Idli Bhavan",
+          isOpen: true,
+          address: {
+            street: "MG Road",
+            city: "Bangalore",
+            pincode: 560034,
+            geolocation: {
+              lat: 12.9716,
+              long: 77.5986,
+            },
+          },
+        },
+        {
+          id: 102,
+          name: "Dosa Delight",
+          isOpen: false,
+          address: {
+            street: "Brigade Road",
+            city: "Bangalore",
+            pincode: 560001,
+            geolocation: {
+              lat: 12.9718,
+              long: 77.6098,
+            },
+          },
+        },
+      ];
+      var table = document.createElement("table");
+      var tr = document.createElement("tr");
+      var keys = Object.keys(restaurant);
+      for (let x of keys) {
+        if (x === "address") {
+          let y = Object.keys(restaurant.address);
+          for (let p of y) {
+            if (p === "geolocation") {
+              let q = Object.keys(restaurant.address.geolocation);
+              for (let w of q) {
+                let th = document.createElement("th");
+                th.textContent = w;
+                tr.appendChild(th);
+              }
+            } else {
+              let th = document.createElement("th");
+              th.textContent = p;
+              tr.appendChild(th);
+            }
+          }
+        } else {
+          let th = document.createElement("th");
+          th.textContent = x;
+          tr.appendChild(th);
+        }
+      }
+      table.appendChild(tr);
+      for (let x of restaurants) {
+        tr = document.createElement("tr");
+        let values = Object.values(x);
+        for (let y of values) {
+          if (typeof y === "object") {
+            let v = Object.values(y);
+            for (let r of v) {
+              if (typeof r === "object") {
+                let s = Object.values(r);
+                for (let d of s) {
+                  let td = document.createElement("td");
+                  td.textContent = d;
+                  tr.appendChild(td);
+                }
+              } else {
+                let td = document.createElement("td");
+                td.textContent = r;
+                tr.appendChild(td);
+              }
+            }
+          }
+          let td = document.createElement("td");
+          td.textContent = y;
+          tr.appendChild(td);
+        }
+        table.appendChild(tr);
+      }
+      document.getElementById("content").append(table);
+    </script>
+  </body>
+</html>

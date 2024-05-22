@@ -1,0 +1,58 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "branch": "Computer Science",
+      "CGPA": 3.5
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "branch": "Electrical Engineering",
+      "CGPA": 5.6
+    },
+    {
+      "id": "3",
+      "name": "Alice Johnson",
+      "branch": "Mechanical Engineering",
+      "CGPA": 3.2
+    },
+    {
+      "id": "86",
+      "name": "Aniket Patra",
+      "branch": "CSE",
+      "CGPA": 9.63
+    },
+    {
+      "id": "11",
+      "name": "Anmol Partha Behera",
+      "branch": "CSE",
+      "CGPA": 9.77
+    },
+    {
+      "id": "61",
+      "name": "Ashutosh Panda",
+      "branch": "CSE",
+      "CGPA": 8.89
+    },
+    {
+      "id": "66",
+      "name": "Abhijit Mahakul",
+      "branch": "CSE",
+      "CGPA": 9.69
+    },
+    {
+      "id": "80",
+      "name": "Chandan Nayak",
+      "branch": "CSE",
+      "CGPA": 9.98
+    },
+    {
+      "id": "36",
+      "name": "Dilip Patel",
+      "branch": "EEE",
+      "CGPA": 9.08
+    }
+  ]
+}

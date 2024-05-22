@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import InterviewCard from '../components/InterviewCard'
 import interviewService from '../apiservice/InterviewService'
 

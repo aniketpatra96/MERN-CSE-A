@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21BCSE30 | Aniket Patra</title>
+    <style>
+      #box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        height: 400px;
+        margin-bottom: 1%;
+        margin-top: 3%;
+        background-color: none;
+      }
+      @media screen and (max-width: 768px) {
+        #box {
+          margin-top: 2%;
+          width: 200px;
+          height: 200px;
+          margin: auto;
+          background-color: none;
+        }
+      }
+      @media screen and (max-width: 244px) {
+        #box {
+          margin-top: 2%;
+          width: 100px;
+          height: 100px;
+          margin: auto;
+          background-color: none;
+        }
+      }
+      #buttons {
+        margin-top: 3%;
+      }
+    </style>
+    <link rel="stylesheet" href="./Bootstrap5/bootstrap.min.css" />
+  </head>
+  <body>
+    <center><div id="box"></div></center>
+    <div id="buttons"></div>
+    <script src="./Bootstrap5/bootstrap.bundle.min.js"></script>
+    <script>
+      const colorNames = [
+        "Red",
+        "Green",
+        "Blue",
+        "Yellow",
+        "Orange",
+        "Purple",
+        "Pink",
+        "Brown",
+        "Gray",
+        "Black",
+        "White",
+        "Cyan",
+        "Magenta",
+        "Turquoise",
+        "Lime",
+        "Indigo",
+        "Maroon",
+        "Olive",
+        "Teal",
+        "Navy",
+        "Lavender",
+        "Coral",
+        "Gold",
+        "Silver",
+        "Chocolate",
+        "Plum",
+        "Sienna",
+        "Crimson",
+        "Chartreuse",
+        "Ivory",
+        "Khaki",
+        "Aqua",
+        "Bisque",
+        "Violet",
+      ];
+      const colorbtn = document.getElementById("buttons");
+      const colordiv = document.getElementById("box");
+      colorNames.forEach((color) => {
+        let button = document.createElement("button");
+        button.style = "margin-right:6px;margin-bottom:3px;";
+        button.textContent = color;
+        button.className = `${color} btn btn-info`;
+        colorbtn.append(button);
+        button.addEventListener("click", () => {
+          colordiv.style = `background-color:${color}`;
+        });
+      });
+      setInterval(()=>{
+        let i = 0;
+        let n = colorNames.length;
+        i = Math.floor(Math.random() * n);
+        colordiv.style.backgroundColor = colorNames[i];
+      },1000);
+    </script>
+  </body>
+</html>

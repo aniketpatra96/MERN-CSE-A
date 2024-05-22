@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ES6 DEMO</title>
+  </head>
+  <body>
+    <script>
+      // a inner function has lexical scope along with its definition
+      // it can access variables from the outer function that defined it
+      function outer() {
+        console.log("This is the outer function");
+        var a = 10;
+        function inner() {
+          console.log("This is an inner function");
+          console.log("A = " + a);
+        }
+        return inner;
+      }
+      var f = outer();
+      console.log("outer executed");
+      f();
+      // display acts as a callback function : a function is passed as a reference to another function
+      // add is the higher order function
+      function add(a, b, callback) {
+        var c = a + b;
+        // return c;
+        callback(c);
+      }
+      function display(x) {
+        console.log(x);
+      }
+      // var sum = add(10,20);
+      // display(sum);
+      // directly passing an annonymous function
+      add(10, 20, function (x) {
+        console.log(x);
+      });
+      function evenOdd(n, callback) {
+        var r = n % 2 === 0 ? "Even" : "Odd";
+        callback(r);
+      }
+      //   function result(res) {
+      //     console.log(res);
+      //   }
+      //   var r = evenOdd(10);
+      //   result(r);
+      //   evenOdd(20, result);
+      evenOdd(20, function (data) {
+        console.log(data);
+      });
+      // This is function provided by js runtime
+      setTimeout(function () {
+        console.log("Time out");
+      }, 3000); //timeout in mili seconds
+      function add2(a, b, callback) {
+        console.log('add is called');
+        setTimeout(function () {
+            console.log('Sum is getting calculated!');
+          var c = a + b;
+          callback(c);
+        }, 3000);
+      }
+      var s = add2(10, 34, function(data){
+        console.log(data);
+      });
+      /*
+      web API/browser API/Node JS
+      setTimeout is a part of browserAPI
+      setInterval is a part of browserAPI
+      fetch is a part of browserAPI
+      external API are asynchronous  calls to another server
+      task queue 
+      end event look checks the call stack if it is empty then it pushes
+      one task to the callstack
+      micro task queue is a priority queue
+      promise is passed to the micro task queue
+      */
+    </script>
+  </body>
+</html>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
 import { decodeToken } from 'react-jwt'

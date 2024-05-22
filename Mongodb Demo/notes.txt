@@ -1,0 +1,14 @@
+Mongo Db
+-> database
+-> non relational database
+-> Document(JSON)
+-> No-SQL(Not only sql) 
+
+row -> Document
+column -> field
+table -> collection
+database -> database
+
+behind the scene data in mongodb stored in (BSON -> Binary JSON)
+BSON provides oid(Object ID)
+BSON provides precise data type

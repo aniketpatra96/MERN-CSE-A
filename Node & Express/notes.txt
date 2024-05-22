@@ -1,0 +1,22 @@
+Node JS is a Javascript run time environment
+It allows you to write server side code in JavaScript
+Node.js uses Google's V8 engine, which is the same that Chrome browser uses
+V8  compiles your javascript into machine code so it can execute faster
+LilUV  (Lightweight HTTP Server) - built-in http module for node.js written  in C++
+javascript runs single threaded but with async callbacks and event loop
+Event Loop: listens for events from OS and executes callback functions when an event occurs
+Node js is a single threaded Runtime Environment
+Node js is Event Driven
+Node js is Non-Blocking I/O
+Browser Js        Node JS
+browser            server
+window             global
+fetch->xml+http    modules
+document(DOM)      file system access is there
+                   Net,http
+
+COMMON JS format
+ES6/module
+
+Default -> 1 component only 
+Named   -> more than one

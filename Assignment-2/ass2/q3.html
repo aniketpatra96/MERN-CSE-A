@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21BCSE30 | Aniket Patra</title>
+    <link rel="stylesheet" href="./Bootstrap5/bootstrap.min.css" />
+    <style>
+      .space {
+        margin-left: 1%;
+      }
+      .form {
+        width: 50%;
+      }
+      @media screen and (max-width: 768px) {
+        .d-flex {
+          display: block !important; /* or any other styles you want to apply */
+        }
+        .todo {
+          width: 50% !important;
+        }
+        .space {
+          margin-top: 1%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <form class="form">
+        <div class="container mt-4 bg-light p-4 rounded shadow-sm">
+          <h1 class="fs-1 fw-bold lh-1">Add Todo</h1>
+          <hr />
+          <div class="d-flex">
+            <label for="task" class="form-label visually-hidden">Task</label>
+            <input
+              id="task"
+              type="text"
+              class="form-control space"
+              placeholder="What needs to be done?"
+              required
+            />
+            <label for="date" class="form-label visually-hidden">Date</label>
+            <input
+              id="date"
+              type="date"
+              class="form-control space"
+              placeholder="Which date the task needs to be done?"
+              required
+            />
+            <label for="time" class="form-label visually-hidden">Time</label>
+            <input
+              id="time"
+              type="time"
+              class="form-control space"
+              placeholder="What time the task needs to be done?"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-outline-success mt-3"
+            onclick="addTodo()"
+          >
+            Save Todo
+          </button>
+        </div>
+      </form>
+    </center>
+    <center>
+      <div class="row todo">
+        <div
+          id="list"
+          class="col-md-6 offset-md-3 col-xs-12 container mt-4 bg-white p-4 rounded shadow-sm"
+        >
+          <h3 class="text-start fs-4 text-muted">My Todos:</h3>
+          <ul id="todolist" class="list-group list-group-flush">
+            <!-- List will be populated here -->
+          </ul>
+        </div>
+      </div>
+    </center>
+    <script src="./Bootstrap5/bootstrap.bundle.min.js"></script>
+    <script>
+      document
+        .getElementsByClassName("form")[0]
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); 
+          this.reset();
+        });
+    </script>
+    <script>
+      function addTodo() {
+        let task = document.querySelector("#task").value;
+        let date = document.querySelector("#date").valueAsNumber;
+        let time = document.querySelector("#time").value;
+        if (task === "" || date == null || time == "")
+          return alert("Please fill all fields");
+        const list = document.getElementById("todolist");
+        list.innerHTML += `
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                  <div class="fw-bold"><span class="fw-normal">Title :</span> ${task}</div>
+                  Due Date : ${new Date(date).toLocaleString()}<br>
+                  Time : ${time}
+              </div>
+          </li>`;
+      }
+    </script>
+  </body>
+</html>

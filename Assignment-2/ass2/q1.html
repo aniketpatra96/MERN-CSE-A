@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21BCSE30 | Aniket Patra</title>
+    <!-- <link rel="stylesheet" href="./Bootstrap5/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./buttons.css">
+  </head>
+  <body>
+    <center>
+      <div class="mt-5">
+        <h1>You have clicked the button <span id="count">0</span> times</h1>
+        <button id="click" class="button-3">Click</button>
+      </div>
+    </center>
+  </body>
+  <!-- <script src="./Bootstrap5/bootstrap.bundle.min.js"></script> -->
+  <script>
+    document.getElementById('click').addEventListener('click',()=>{
+        let countDiv = document.getElementById("count");
+        let count = parseInt(countDiv.innerText);
+        countDiv.innerText = count + 1;
+    });
+  </script>
+</html>

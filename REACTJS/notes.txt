@@ -1,0 +1,20 @@
+REACT JS
+opensource js library
+single page application consist of single html file.
+to build UI of SPA
+developed by facebook (META)
+Routing is not availaible in react js directly
+http requests,Testing is not available in react js
+
+Create a react application
+1.commandline tool :- mpx create-react-app appName
+2.CDN
+3.NEXT JS,Remix,Getsly
+4.Bundlers:- Vite,Webpack+Babble,Percel
+npm create vite@latest
+
+
+cors (CROSS ORIGIN Resource Sharing)
+browser does not allow resource sharig between different domains
+conditional chaining (?.)
+import.meta.env.VITE_SOME_KEY

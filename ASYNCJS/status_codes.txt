@@ -1,0 +1,32 @@
+status codes
+100 - info
+200 - success
+300 - redirection
+400 - client error
+500 - server error
+600 - network error
+
+201 - success (created)
+
+404 - resource not found
+405 - meyhod not allowed
+400 - bad request
+
+JSON-server
+
+package.json -> stores the metadata of a project
+
+res = axios.post(url,data)
+
+if(res.status === 201){
+    //code
+}else{
+    //handle error
+}
+
+axios.delete(deleteUrl) //append the id to the base url
+axios.put(url,updatedData) //append the id to the base url and send data in body
+
+const urlPrams = new URLSearchParams(window.location.search)
+urlPrams.get("id"): gets value from "?id=xxxxx
+

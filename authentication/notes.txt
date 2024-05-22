@@ -1,0 +1,67 @@
+Middleware
+password encryption
+JWT
+Context API
+
+
+Middleware
+a software tool the build Middleware
+it intercept the incoming request or outgoing response.
+Auth Middleware
+logging
+
+function
+-request
+-response
+-next
+
+Context API
+-Context Object
+-Context Provider
+-Context Consumer
+
+contexts folder
+
+CounterContext.jsx
+import {createContext,useState,useContext} from "react";
+
+export const CounterContext = createContext(null);
+
+const CounterProvider = (props) => {
+    const [count,setCount] = useState(0);
+    return(
+        <CounterContext.Provider value={{ count, setCount}}> //object is passed as value
+           {props.children}
+        </CounterContext.Provider>
+    )
+}
+
+export const useCount = () => {
+    const CounterContext = useContext(CounterContext)
+    return CounterContext;
+}
+
+main.jsx
+wrap the App within CounterProvider
+
+useContext hook to be used in components
+
+
+
+
+
+
+prop drilling
+-parent component pass data to child components
+-child component use that data
+
+useReducer()
+-reducer function 
+-initial state
+-dispatch action
+
+useState() and useReducer() are both used for managing state in React applications, but they work differently:
+ 
+
+
+react-jwt package to decode a token
